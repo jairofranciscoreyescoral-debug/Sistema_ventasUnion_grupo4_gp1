@@ -6,7 +6,20 @@ module pe.edu.upeu.taller_git_gp1 {
     requires com.dlsc.formsfx;
     requires net.synedra.validatorfx;
     requires org.kordamp.bootstrapfx.core;
+    requires java.sql;
+    requires java.desktop;
+    requires javafx.base;
+    requires javafx.graphics;
 
     opens pe.edu.upeu.taller_git_gp1 to javafx.fxml;
+
+
     exports pe.edu.upeu.taller_git_gp1;
+    exports pe.edu.upeu.taller_git_gp1.modelo;
+    exports pe.edu.upeu.taller_git_gp1.utils;
+    exports pe.edu.upeu.taller_git_gp1.test;
+    exports pe.edu.upeu.taller_git_gp1.interfaces;
+    exports pe.edu.upeu.taller_git_gp1.implementacion;
+    exports pe.edu.upeu.taller_git_gp1.controller;
+
 }
