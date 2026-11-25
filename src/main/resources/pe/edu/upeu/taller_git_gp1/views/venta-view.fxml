@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Font?>
+<VBox spacing="15.0"
+      style="-fx-background-color: #F4F6F9;"
+      xmlns="http://javafx.com/javafx/17.0.12"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="pe.edu.upeu.taller_git_gp1.controller.VentaController">
+
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="25.0"/>
+    </padding>
+
+    <children>
+
+        <Label text="GESTIÓN DE VENTAS"
+               textFill="#263746"
+               styleClass="lbl-titulo">
+            <font>
+                <Font name="System Bold" size="20.0"/>
+            </font>
+        </Label>
+
+        <HBox alignment="CENTER_LEFT" spacing="10.0">
+            <children>
+                <Button mnemonicParsing="false"
+                        onAction="#handleNew"
+                        styleClass="button-save"
+                        text="+ NUEVA VENTA"/>
+            </children>
+        </HBox>
+
+        <TableView fx:id="tableVenta" VBox.vgrow="ALWAYS">
+
+            <columns>
+                <TableColumn fx:id="ColNumero" prefWidth="50.0" text="N°"/>
+                <TableColumn fx:id="ColID" prefWidth="60.0" text="ID"/>
+                <TableColumn fx:id="ColCliente" prefWidth="200.0" text="Cliente"/>
+                <TableColumn fx:id="ColUsuario" prefWidth="130.0" text="Usuario"/>
+                <TableColumn fx:id="ColFecha" prefWidth="120.0" text="Fecha"/>
+                <TableColumn fx:id="ColTotal" prefWidth="100.0" text="Total"/>
+            </columns>
+
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+            </columnResizePolicy>
+
+        </TableView>
+
+    </children>
+</VBox>

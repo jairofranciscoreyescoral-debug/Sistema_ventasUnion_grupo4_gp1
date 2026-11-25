@@ -46,7 +46,7 @@ public class MainController {
     private void loadview(String fxml) {
         try {
             FXMLLoader loader=new FXMLLoader(getClass()
-                    .getResource("/pe/edu/upeu/proyect_final_gp1/views/"+fxml));
+                    .getResource("/pe/edu/upeu/taller_git_gp1/views/"+fxml));
             Parent view =loader.load();
             contentArea.getChildren().setAll(view);
         } catch (IOException e) {
