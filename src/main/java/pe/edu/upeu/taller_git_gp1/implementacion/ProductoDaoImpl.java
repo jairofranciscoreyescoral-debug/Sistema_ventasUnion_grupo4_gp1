@@ -41,7 +41,6 @@ public class ProductoDaoImpl implements IProductoDao {
     public boolean update(Producto p) {
         String sql = "UPDATE producto SET nombre=?, tipoProducto=?, precio=?, "
                 + "stock=?, estado=? WHERE idproducto=?";
-
         try {
             Connection cn = ConexionBD.getConnection();
             PreparedStatement ps = cn.prepareStatement(sql);
@@ -56,7 +55,6 @@ public class ProductoDaoImpl implements IProductoDao {
             ps.executeUpdate();
             ps.close();
             return true;
-
         } catch (SQLException e) {
             System.out.println("Error al actualizar producto: " + e.getMessage());
             return false;
@@ -66,7 +64,6 @@ public class ProductoDaoImpl implements IProductoDao {
     @Override
     public boolean delete(Producto p) {
         String sql = "DELETE FROM producto WHERE idproducto=?";
-
         try {
             Connection cn = ConexionBD.getConnection();
             PreparedStatement ps = cn.prepareStatement(sql);

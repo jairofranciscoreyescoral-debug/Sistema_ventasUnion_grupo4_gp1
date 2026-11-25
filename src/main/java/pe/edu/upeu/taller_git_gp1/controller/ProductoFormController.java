@@ -27,18 +27,17 @@ public class ProductoFormController {
 
     private Producto producto;
     private boolean saved = false;
-
     @FXML
     public void initialize() {
         cbEstado.getItems().addAll("Disponible", "No Stock");
-        cbTipo.getItems().addAll("Pan", "Bebida", "Bolleria", "Snack", "Cereal" , "Untable" , "Paneton");
+        cbTipo.getItems().addAll("Pan", "Bebida", "Bolleria", "Snack", "Cereal", "Untable", "Paneton");
+        cbEstado.setDisable(true);
     }
     private boolean validated() {
         if (txtNombre.getText().isEmpty()
                 || txtPrecio.getText().isEmpty()
                 || txtStock.getText().isEmpty()
-                || cbTipo.getValue() == null
-                || cbEstado.getValue() == null) {
+                || cbTipo.getValue() == null) {
             Alert alert = alertsUtils.viewAlerts(
                     "ERROR",
                     "Todos los campos son obligatorios",
@@ -50,8 +49,7 @@ public class ProductoFormController {
         try {
             Double.parseDouble(txtPrecio.getText());
             Integer.parseInt(txtStock.getText());
-
-        }catch (NumberFormatException e) {
+        } catch (NumberFormatException e) {
             Alert alert = alertsUtils.viewAlerts(
                     "ERROR",
                     "Precio y Stock deben ser valores numéricos",
@@ -90,38 +88,31 @@ public class ProductoFormController {
             producto.setTipoProducto(cbTipo.getValue());
             producto.setPrecio(Double.parseDouble(txtPrecio.getText()));
             producto.setStock(Integer.parseInt(txtStock.getText()));
-            producto.setEstado(cbEstado.getValue());
 
-            if (producto.getStock() <= 0) {
-                producto.setEstado("No stock");
-                cbEstado.setValue("No stock");
-            } else {
-                producto.setEstado("Disponible");
-                cbEstado.setValue("Disponible");
-            }
+            producto.setEstado(
+                    producto.getStock() == 0 ? "No Stock" : "Disponible"
+            );
+
+            cbEstado.setValue(producto.getEstado());
 
             saved = true;
             cerrar();
         }
     }
-
     public void setProducto(Producto p) {
         this.producto = p;
         if (p != null) {
-
             lblTitulo.setText("Editar producto");
 
             txtNombre.setText(p.getNombre());
             txtPrecio.setText(String.valueOf(p.getPrecio()));
+            txtStock.setText(String.valueOf(p.getStock()));
 
-            cbEstado.setValue(p.getEstado());
             cbTipo.setValue(p.getTipoProducto());
 
-            if (p.getStock() <= 0) {
-                cbEstado.setValue("No stock");
-            } else {
-                cbEstado.setValue("Disponible");
-            }
+            cbEstado.setValue(
+                    p.getStock() == 0 ? "No Stock" : "Disponible"
+            );
         }
     }
 }
