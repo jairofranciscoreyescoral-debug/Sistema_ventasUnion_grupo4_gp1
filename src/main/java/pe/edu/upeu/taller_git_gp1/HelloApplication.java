@@ -3,6 +3,7 @@ package pe.edu.upeu.taller_git_gp1;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -16,6 +17,9 @@ public class HelloApplication extends Application {
                 )
         );
         Scene scene = new Scene(fxmlLoader.load());
+        stage.getIcons().add(new
+                Image(getClass().getResourceAsStream(
+                "/pe/edu/upeu/taller_git_gp1/img/union.png")));
         stage.setTitle("Sistema de Ventas Unión");
         stage.setScene(scene);
         stage.show();
@@ -23,5 +27,4 @@ public class HelloApplication extends Application {
     public static void main(String[] args) {
         launch();
     }
-
 }

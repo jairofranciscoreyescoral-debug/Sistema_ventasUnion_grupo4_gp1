@@ -92,6 +92,14 @@ public class ProductoFormController {
             producto.setStock(Integer.parseInt(txtStock.getText()));
             producto.setEstado(cbEstado.getValue());
 
+            if (producto.getStock() <= 0) {
+                producto.setEstado("No stock");
+                cbEstado.setValue("No stock");
+            } else {
+                producto.setEstado("Disponible");
+                cbEstado.setValue("Disponible");
+            }
+
             saved = true;
             cerrar();
         }
@@ -105,10 +113,15 @@ public class ProductoFormController {
 
             txtNombre.setText(p.getNombre());
             txtPrecio.setText(String.valueOf(p.getPrecio()));
-            txtStock.setText(String.valueOf(p.getStock()));
 
             cbEstado.setValue(p.getEstado());
             cbTipo.setValue(p.getTipoProducto());
+
+            if (p.getStock() <= 0) {
+                cbEstado.setValue("No stock");
+            } else {
+                cbEstado.setValue("Disponible");
+            }
         }
     }
 }
