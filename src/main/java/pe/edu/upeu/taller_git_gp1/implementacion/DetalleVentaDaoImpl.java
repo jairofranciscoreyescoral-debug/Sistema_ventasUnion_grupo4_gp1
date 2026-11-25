@@ -17,23 +17,34 @@ public class DetalleVentaDaoImpl implements IDetalleVentaDao {
     @Override
     public boolean insert(DetalleVenta d) {
         boolean flag = false;
+        String queryStock = "UPDATE producto SET stock = stock - ? "
+                + "WHERE idproducto = ? AND stock >= ?";
+
         String query = "INSERT INTO detalleventa(ventaId, productoId, cantidad, precio, subtotal) "
-                + "VALUES((SELECT MAX(idventa) FROM venta),?,?,?,?);";
-        try (Connection cn = ConexionBD.getConnection();
-             PreparedStatement st = cn.prepareStatement(query);) {
+                + "VALUES((SELECT MAX(idventa) FROM venta),?,?,?,?)";
+        try (Connection cn = ConexionBD.getConnection()) {
+            try (PreparedStatement stS = cn.prepareStatement(queryStock)) {
+                stS.setInt(1, d.getCantidad());
+                stS.setInt(2, d.getProducto().getIdproducto());
+                stS.setInt(3, d.getCantidad());
 
-            st.setInt(1, d.getProducto().getIdproducto());
-            st.setInt(2, d.getCantidad());
-            st.setDouble(3, d.getPrecio());
-            st.setDouble(4, d.getSubtotal());
+                if (stS.executeUpdate() == 0) {
+                    System.out.println("Stock insuficiente");
+                    return false;
+                }
+            }
+            try (PreparedStatement st = cn.prepareStatement(query)) {
+                st.setInt(1, d.getProducto().getIdproducto());
+                st.setInt(2, d.getCantidad());
+                st.setDouble(3, d.getPrecio());
+                st.setDouble(4, d.getSubtotal());
 
-            st.executeUpdate();
-            flag = true;
-
+                st.executeUpdate();
+                flag = true;
+            }
         } catch (SQLException e) {
             System.out.println("Error de insert DetalleVenta " + e.getMessage());
         }
-
         return flag;
     }
 

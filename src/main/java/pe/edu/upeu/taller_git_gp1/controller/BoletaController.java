@@ -64,7 +64,7 @@ public class BoletaController {
 
     public void recibirVenta(Venta venta,
                              ObservableList<DetalleVenta> detalles) {
-        lblNumero.setText(String.valueOf(venta.getIdventa()));
+        lblNumero.setText(String.format("%06d", venta.getIdventa()));
         lblFecha.setText(venta.getFechaventa().toString());
         lblCliente.setText(
                 venta.getCliente().getNombres() + " " +

@@ -62,13 +62,7 @@
                 <Label text="Cantidad:"/>
                 <TextField fx:id="txtCantidad"
                            promptText="Ingrese cantidad"
-                           GridPane.columnIndex="1"
-                           onAction="#calcularsubtotalTotal"/>
-
-                <Label text="Subtotal:" GridPane.rowIndex="1"/>
-                <Label fx:id="lblSubtotal" text="0.00"
-                       style="-fx-font-size: 17px; -fx-font-weight: bold;"
-                       GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                           GridPane.columnIndex="1"/>
             </GridPane>
 
             <Button text="AGREGAR PRODUCTO"

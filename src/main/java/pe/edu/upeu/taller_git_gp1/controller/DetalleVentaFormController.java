@@ -16,67 +16,41 @@ import java.sql.SQLException;
 
 public class DetalleVentaFormController {
     private static final AlertsUtils alertUtils = new AlertsUtils();
-
     @FXML
     private TextField txtBuscar, txtCantidad;
-
-    @FXML
-    private Label lblSubtotal;
-
     @FXML
     private TableView<Producto> tableProducto;
-
     @FXML
     private TableColumn<Producto, Number> ColNumero;
-
     @FXML
     private TableColumn<Producto, Integer> ColId;
-
     @FXML
     private TableColumn<Producto, String> ColNombre;
-
     @FXML
     private TableColumn<Producto, Double> ColPrecio;
-
     @FXML
     private TableColumn<Producto, Integer> ColStock;
-
     @FXML
     private TableView<DetalleVenta> tableDetalle;
-
     @FXML
     private TableColumn<DetalleVenta, String> ColDetalleProducto;
-
     @FXML
     private TableColumn<DetalleVenta, Integer> ColDetalleCantidad;
-
     @FXML
     private TableColumn<DetalleVenta, Double> ColDetallePrecio;
-
     @FXML
     private TableColumn<DetalleVenta, Double> ColDetalleSubtotal;
 
     private final IProductoDao productoDao = new ProductoDaoImpl();
-
-    private ObservableList<Producto> listaProducto =
-            FXCollections.observableArrayList();
-
-    private ObservableList<Producto> productosFiltrados =
-            FXCollections.observableArrayList();
-
-    private ObservableList<DetalleVenta> listaDetalle =
-            FXCollections.observableArrayList();
-
+    private ObservableList<Producto> listaProducto = FXCollections.observableArrayList();
+    private ObservableList<Producto> productosFiltrados = FXCollections.observableArrayList();
+    private ObservableList<DetalleVenta> listaDetalle = FXCollections.observableArrayList();
     private Producto productoEncontrado;
-
     private VentaFormController ventaFormController;
-
     private boolean guardado = false;
 
     @FXML
     private void initialize() {
-
-        // Columnas de productos
         ColNumero.setCellFactory(column -> new TableCell<>() {
             @Override
             protected void updateItem(Number item, boolean empty) {
@@ -91,26 +65,19 @@ public class DetalleVentaFormController {
 
         ColId.setCellValueFactory(
                 cd -> cd.getValue().idproductoProperty().asObject());
-
         ColNombre.setCellValueFactory(
                 cd -> cd.getValue().nombreProperty());
-
         ColPrecio.setCellValueFactory(
                 cd -> cd.getValue().precioProperty().asObject());
-
         ColStock.setCellValueFactory(
                 cd -> cd.getValue().stockProperty().asObject());
 
-        // Columnas de detalles
         ColDetalleProducto.setCellValueFactory(
                 cd -> cd.getValue().getProducto().nombreProperty());
-
         ColDetalleCantidad.setCellValueFactory(
                 cd -> cd.getValue().cantidadProperty().asObject());
-
         ColDetallePrecio.setCellValueFactory(
                 cd -> cd.getValue().precioProperty().asObject());
-
         ColDetalleSubtotal.setCellValueFactory(
                 cd -> cd.getValue().subtotalProperty().asObject());
 
@@ -118,8 +85,6 @@ public class DetalleVentaFormController {
         tableDetalle.setItems(listaDetalle);
 
         cargarDatos();
-
-        lblSubtotal.setText("0.00");
         txtCantidad.clear();
     }
 
@@ -129,9 +94,7 @@ public class DetalleVentaFormController {
 
     @FXML
     private void buscarProducto() {
-
         String nombre = txtBuscar.getText().toLowerCase();
-
         productosFiltrados.clear();
 
         for (Producto producto : listaProducto) {
@@ -139,37 +102,12 @@ public class DetalleVentaFormController {
                 productosFiltrados.add(producto);
             }
         }
-
         tableProducto.setItems(productosFiltrados);
-    }
-
-    @FXML
-    private void calcularsubtotalTotal() {
-        productoEncontrado = tableProducto.getSelectionModel().getSelectedItem();
-        if (productoEncontrado == null || txtCantidad.getText().isEmpty()) {
-            lblSubtotal.setText("0.00");
-            return;
-        }
-
-        try {
-            int cantidad = Integer.parseInt(txtCantidad.getText());
-
-            if (cantidad > 0) {
-                double subtotal = cantidad * productoEncontrado.getPrecio();
-                lblSubtotal.setText(String.format("%.2f", subtotal));
-            } else {
-                lblSubtotal.setText("0.00");
-            }
-
-        } catch (NumberFormatException e) {
-            lblSubtotal.setText("0.00");
-        }
     }
 
     @FXML
     private void handleAgregar() {
         productoEncontrado = tableProducto.getSelectionModel().getSelectedItem();
-
         if (productoEncontrado == null || txtCantidad.getText().isEmpty()) {
             Alert alert = alertUtils.viewAlerts(
                     "Error",
@@ -181,7 +119,6 @@ public class DetalleVentaFormController {
         }
 
         int cantidad;
-
         try {
             cantidad = Integer.parseInt(txtCantidad.getText());
         } catch (Exception e) {
@@ -193,7 +130,6 @@ public class DetalleVentaFormController {
             alert.showAndWait();
             return;
         }
-
         if (cantidad <= 0) {
             Alert alert = alertUtils.viewAlerts(
                     "Error",
@@ -204,7 +140,13 @@ public class DetalleVentaFormController {
             return;
         }
 
-        if (cantidad > productoEncontrado.getStock()) {
+        int cantidadAgregada = 0;
+        for (DetalleVenta d : listaDetalle) {
+            if (d.getProducto().getIdproducto() == productoEncontrado.getIdproducto()) {
+                cantidadAgregada += d.getCantidad();
+            }
+        }
+        if (cantidad + cantidadAgregada > productoEncontrado.getStock()) {
             Alert alert = alertUtils.viewAlerts(
                     "Error",
                     "No hay suficiente stock",
@@ -214,10 +156,7 @@ public class DetalleVentaFormController {
             return;
         }
 
-        calcularsubtotalTotal();
-
         DetalleVenta detalle = new DetalleVenta();
-
         detalle.setProducto(productoEncontrado);
         detalle.setCantidad(cantidad);
         detalle.setPrecio(productoEncontrado.getPrecio());
@@ -227,14 +166,11 @@ public class DetalleVentaFormController {
 
         productoEncontrado = null;
         tableProducto.getSelectionModel().clearSelection();
-
         txtCantidad.clear();
-        lblSubtotal.setText("0.00");
     }
 
     @FXML
     private void handleGuardar() {
-
         if (listaDetalle.isEmpty()) {
             Alert alert = alertUtils.viewAlerts(
                     "Error",
@@ -244,9 +180,7 @@ public class DetalleVentaFormController {
             alert.showAndWait();
             return;
         }
-
         ventaFormController.recibirDetalles(listaDetalle);
-
         guardado = true;
         cerrar();
     }

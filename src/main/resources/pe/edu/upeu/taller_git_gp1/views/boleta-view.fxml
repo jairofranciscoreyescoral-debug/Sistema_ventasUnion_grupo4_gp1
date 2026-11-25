@@ -46,21 +46,20 @@
     <VBox spacing="10.0">
         <Label text="DETALLE DE PRODUCTOS"
                style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
-
         <TableView fx:id="tableBoleta"
                    prefHeight="190.0"
                    minHeight="190.0"
                    maxHeight="190.0"
                    styleClass="boleta-tabla">
             <columns>
-                <TableColumn fx:id="ColProducto" text="Producto" prefWidth="190.0"/>
-                <TableColumn fx:id="ColCantidad" text="Cant." prefWidth="60.0"/>
-                <TableColumn fx:id="ColPrecio" text="P.Unit." prefWidth="75.0"/>
-                <TableColumn fx:id="ColSubtotal" text="Total" prefWidth="105.0"/>
+                <TableColumn fx:id="ColProducto" text="Producto" prefWidth="160.0"/>
+                <TableColumn fx:id="ColCantidad" text="Cant." prefWidth="50.0"/>
+                <TableColumn fx:id="ColPrecio" text="P.Unit." prefWidth="65.0"/>
+                <TableColumn fx:id="ColSubtotal" text="Total" prefWidth="80.0"/>
             </columns>
-            <placeholder>
-                <Label text=""/>
-            </placeholder>
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+            </columnResizePolicy>
         </TableView>
     </VBox>
     <Separator/>
