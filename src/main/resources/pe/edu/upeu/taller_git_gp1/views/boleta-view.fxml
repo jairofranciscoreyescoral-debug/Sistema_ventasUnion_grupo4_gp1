@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="TOP_CENTER"
+      prefWidth="520.0"
+      prefHeight="680.0"
+      spacing="12.0"
+      stylesheets="@style.css"
+      style="-fx-background-color: white; -fx-padding: 35 45 35 45;"
+      xmlns="http://javafx.com/javafx/17.0.12"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="pe.edu.upeu.taller_git_gp1.controller.BoletaController">
+    <!-- encabezado -->
+    <VBox alignment="CENTER" spacing="5.0"
+          style="-fx-padding: 8 0 15 0;">
+        <Label text="UNIÓN"
+               style="-fx-font-size: 30px; -fx-font-weight: bold; -fx-text-fill: #24313A;"/>
+        <Label text="Alimentos y consumo"
+               style="-fx-font-size: 12px; -fx-text-fill: #777777;"/>
+        <Label text="BOLETA DE VENTA"
+               style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #24313A;"/>
+        <Label fx:id="lblNumero" text="000001"
+               style="-fx-font-size: 15px; -fx-font-weight: bold;"/>
+    </VBox>
+    <Separator/>
+    <!-- datos de venta -->
+    <VBox spacing="12.0" style="-fx-padding: 12 8;">
+        <HBox spacing="8.0">
+            <Label text="FECHA:"/>
+            <Label fx:id="lblFecha"/>
+        </HBox>
+        <HBox spacing="8.0">
+            <Label text="CLIENTE:"/>
+            <Label fx:id="lblCliente" wrapText="true"/>
+        </HBox>
+
+        <HBox spacing="8.0">
+            <Label text="VENDEDOR:"/>
+            <Label fx:id="lblUsuario" wrapText="true"/>
+        </HBox>
+    </VBox>
+    <Separator/>
+    <!-- detalle venta -->
+    <VBox spacing="10.0">
+        <Label text="DETALLE DE PRODUCTOS"
+               style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+
+        <TableView fx:id="tableBoleta"
+                   prefHeight="190.0"
+                   minHeight="190.0"
+                   maxHeight="190.0"
+                   styleClass="boleta-tabla">
+            <columns>
+                <TableColumn fx:id="ColProducto" text="Producto" prefWidth="190.0"/>
+                <TableColumn fx:id="ColCantidad" text="Cant." prefWidth="60.0"/>
+                <TableColumn fx:id="ColPrecio" text="P.Unit." prefWidth="75.0"/>
+                <TableColumn fx:id="ColSubtotal" text="Total" prefWidth="105.0"/>
+            </columns>
+            <placeholder>
+                <Label text=""/>
+            </placeholder>
+        </TableView>
+    </VBox>
+    <Separator/>
+    <!-- total -->
+    <HBox alignment="CENTER_RIGHT" spacing="18.0"
+          style="-fx-padding: 15 8;">
+        <Label text="TOTAL:"
+               style="-fx-font-size: 17px; -fx-font-weight: bold;"/>
+        <Label fx:id="lblTotal" text="S/. 0.00"
+               style="-fx-font-size: 22px; -fx-font-weight: bold;"/>
+    </HBox>
+    <Separator/>
+    <!-- pie de boleta -->
+    <VBox alignment="CENTER" spacing="8.0"
+          style="-fx-padding: 15 0 10 0;">
+        <Label text="¡Gracias por su compra!"
+               style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+        <Label text="Vuelva pronto"
+               style="-fx-font-size: 12px; -fx-text-fill: #777777;"/>
+    </VBox>
+</VBox>

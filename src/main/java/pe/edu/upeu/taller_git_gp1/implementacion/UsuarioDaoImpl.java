@@ -27,9 +27,9 @@ public class UsuarioDaoImpl implements IUsuarioDao {
                     us.setIdusuario(rs.getInt("idusuario"));
                     us.setUser(rs.getString("user"));
                     us.setTipoUser(rs.getString("tipoUser"));
-                   // us.setNombres(rs.getString("nombre"));
-                  //  us.setApellidos(rs.getString("apellidos"));
-                   // us.setDni(rs.getString("dni"));
+                    us.setNombres(rs.getString("nombres"));
+                    us.setApellidos(rs.getString("apellidos"));
+                    us.setDni(rs.getString("dni"));
                     System.out.println("login success");
                 }
             }

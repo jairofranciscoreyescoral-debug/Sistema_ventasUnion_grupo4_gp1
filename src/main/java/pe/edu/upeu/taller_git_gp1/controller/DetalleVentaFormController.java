@@ -145,9 +145,7 @@ public class DetalleVentaFormController {
 
     @FXML
     private void calcularsubtotalTotal() {
-
         productoEncontrado = tableProducto.getSelectionModel().getSelectedItem();
-
         if (productoEncontrado == null || txtCantidad.getText().isEmpty()) {
             lblSubtotal.setText("0.00");
             return;
@@ -170,7 +168,6 @@ public class DetalleVentaFormController {
 
     @FXML
     private void handleAgregar() {
-
         productoEncontrado = tableProducto.getSelectionModel().getSelectedItem();
 
         if (productoEncontrado == null || txtCantidad.getText().isEmpty()) {

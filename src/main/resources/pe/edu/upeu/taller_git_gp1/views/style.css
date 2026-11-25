@@ -195,7 +195,7 @@
 
 
 .left-pane {
-    -fx-background-color: #24313A;
+    -fx-background-color: #e60000;
     -fx-alignment: center;
 }
 
@@ -212,4 +212,62 @@
 .footer {
     -fx-background-color: #F4F6F9;
     -fx-padding: 8;
+}
+
+/* tabla trasparente */
+.boleta-tabla {
+    -fx-background-color: transparent;
+    -fx-control-inner-background: transparent;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+    -fx-border-color: transparent;
+    -fx-padding: 0;
+    -fx-table-cell-border-color: transparent;
+    -fx-fixed-cell-size: 32px;
+}
+
+.boleta-tabla .column-header-background {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+}
+
+.boleta-tabla .column-header {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent transparent #999999 transparent;
+    -fx-size: 32px;
+}
+
+.boleta-tabla .column-header .label {
+    -fx-background-color: transparent;
+    -fx-text-fill: #24313A;
+    -fx-font-weight: bold;
+    -fx-alignment: CENTER;
+}
+
+.boleta-tabla .filler {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent transparent #999999 transparent;
+}
+
+.boleta-tabla .table-row-cell,
+.boleta-tabla .table-row-cell:odd,
+.boleta-tabla .table-row-cell:even,
+.boleta-tabla .table-row-cell:hover,
+.boleta-tabla .table-row-cell:selected {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.boleta-tabla .table-cell {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-text-fill: #24313A;
+    -fx-font-size: 12px;
+    -fx-alignment: CENTER;
+}
+
+.boleta-tabla .virtual-flow,
+.boleta-tabla .clipped-container,
+.boleta-tabla .sheet {
+    -fx-background-color: transparent;
 }

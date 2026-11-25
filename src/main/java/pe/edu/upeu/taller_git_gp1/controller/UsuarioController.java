@@ -54,13 +54,13 @@ public class UsuarioController {
     private void navigateToHome() {
         try {
             FXMLLoader loader = new FXMLLoader
-                    (getClass().getResource("/pe/edu/upeu/project_final_gp1/views/main-view.fxml"));
+                    (getClass().getResource("/pe/edu/upeu/taller_git_gp1/views/main-view.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) txtUser.getScene().getWindow();
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.setMaximized(true);
-            stage.setTitle("Sistema Hotelero");
+            stage.setTitle("Sistema De Ventas");
             stage.show();
         } catch (IOException e) {
             System.err.println("Error al cargar el home" + e.getMessage());

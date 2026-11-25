@@ -98,9 +98,7 @@ public class ProductoFormController {
     }
 
     public void setProducto(Producto p) {
-
         this.producto = p;
-
         if (p != null) {
 
             lblTitulo.setText("Editar producto");

@@ -12,7 +12,7 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(
                 HelloApplication.class.getResource(
-                        "/pe/edu/upeu/taller_git_gp1/views/main-view.fxml"
+                        "/pe/edu/upeu/taller_git_gp1/views/login-view.fxml"
                 )
         );
         Scene scene = new Scene(fxmlLoader.load());

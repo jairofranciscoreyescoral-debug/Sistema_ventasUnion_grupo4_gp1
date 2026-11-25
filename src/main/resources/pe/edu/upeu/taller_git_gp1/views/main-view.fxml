@@ -21,25 +21,18 @@
               styleClass="header">
 
             <children>
-
                 <ImageView fx:id="imgUnion" fitHeight="120.0" fitWidth="150.0"
                            pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../img/union1.png"/>
                     </image>
                 </ImageView>
-                <Region HBox.hgrow="ALWAYS" />
-                <Label text="Bienvenido Usuario" textFill="#f7f7f7">
-                    <font><Font name="Arial" size="23.0" /></font>
-                    <HBox.margin><Insets right="20.0"/></HBox.margin>
-                </Label>
                 <Region HBox.hgrow="ALWAYS"/>
-
                 <Label fx:id="lblUsuario"
                        text="Bienvenido"
                        textFill="WHITE">
                     <font>
-                        <Font name="System Italic" size="14.0"/>
+                        <Font name="Segoe UI" size="20.0"/>
                     </font>
                     <HBox.margin>
                         <Insets right="25.0"/>

@@ -27,9 +27,13 @@ import java.time.LocalDate;
 
 public class VentaFormController {
     private static final AlertsUtils alertUtils = new AlertsUtils();
+    private Venta ventaGuardada;
 
     @FXML
     private Label lblTitulo, lblTotal, lblUsuario;
+
+    @FXML
+    private TextField txtBuscarDni;
 
     @FXML
     private ComboBox<Cliente> cbCliente;
@@ -63,11 +67,7 @@ public class VentaFormController {
 
     @FXML
     private void initialize() {
-
-        cbCliente.setItems(
-                FXCollections.observableArrayList(clienteDao.listAll())
-        );
-
+        cbCliente.setItems(FXCollections.observableArrayList());
         cbCliente.setConverter(new StringConverter<Cliente>() {
             @Override
             public String toString(Cliente cliente) {
@@ -76,49 +76,68 @@ public class VentaFormController {
                 }
                 return cliente.getNombres() + " " + cliente.getApellidos();
             }
-
             @Override
             public Cliente fromString(String string) {
                 return null;
             }
         });
-
         // llenar las columnas :v
         ColProducto.setCellValueFactory(
                 cd -> cd.getValue().getProducto().nombreProperty());
-
         ColCantidad.setCellValueFactory(
                 cd -> cd.getValue().cantidadProperty().asObject());
-
         ColPrecio.setCellValueFactory(
                 cd -> cd.getValue().precioProperty().asObject());
-
         ColSubtotal.setCellValueFactory(
                 cd -> cd.getValue().subtotalProperty().asObject());
-
         tableDetalle.setItems(listaDetalle);
-
         Usuario usuario = UserSession.getInstance().getUserLogger();
-
         if (usuario != null) {
-            lblUsuario.setText(usuario.getNombres());
+            lblUsuario.setText(
+                    usuario.getNombres() + " " + usuario.getApellidos()
+            );
         }
-
         dpFecha.setValue(LocalDate.now());
-
         actualizarTotal();
     }
+    @FXML
+    private void handleBuscarCliente() {
+        String dni = txtBuscarDni.getText();
+        if (dni == null || dni.isEmpty()) {
+            Alert alert = alertUtils.viewAlerts(
+                    "Aviso",
+                    "Ingrese el DNI del cliente",
+                    "WARNING"
+            );
+            alert.showAndWait();
+            return;
+        }
+        Cliente cliente = clienteDao.searchByDni(dni);
+        if (cliente != null) {
+            cbCliente.setItems(
+                    FXCollections.observableArrayList(cliente)
+            );
+            cbCliente.setValue(cliente);
+        } else {
+            cbCliente.getItems().clear();
+            cbCliente.setValue(null);
 
+            Alert alert = alertUtils.viewAlerts(
+                    "Aviso",
+                    "No se encontró un cliente con ese DNI",
+                    "WARNING"
+            );
+            alert.showAndWait();
+        }
+    }
     @FXML
     private void handleAddDetalle() {
-
         try {
             FXMLLoader loader = new FXMLLoader(
                     getClass().getResource(
                             "/pe/edu/upeu/taller_git_gp1/views/detalleventa-form.fxml"
                     )
             );
-
             Parent root = loader.load();
 
             DetalleVentaFormController controller = loader.getController();
@@ -135,7 +154,6 @@ public class VentaFormController {
             e.printStackTrace();
         }
     }
-
     public void recibirDetalles(ObservableList<DetalleVenta> detalles) {
 
         listaDetalle.setAll(detalles);
@@ -144,7 +162,6 @@ public class VentaFormController {
 
         actualizarTotal();
     }
-
     private void actualizarTotal() {
 
         double total = 0;
@@ -155,14 +172,21 @@ public class VentaFormController {
 
         lblTotal.setText(String.format("%.2f", total));
     }
-
     @FXML
     private void handleSave() {
-
+        if (ventaGuardada != null) {
+            Alert alert = alertUtils.viewAlerts(
+                    "Aviso",
+                    "La venta ya fue registrada",
+                    "WARNING"
+            );
+            alert.showAndWait();
+            return;
+        }
         if (cbCliente.getValue() == null || dpFecha.getValue() == null
                 || listaDetalle.isEmpty()
-                || UserSession.getInstance().getUserLogger() == null
-        ) {
+                || UserSession.getInstance().getUserLogger() == null) {
+
             Alert alert = alertUtils.viewAlerts(
                     "Error",
                     "Completar los campos y agregar productos",
@@ -179,29 +203,28 @@ public class VentaFormController {
         v.setUsuario(UserSession.getInstance().getUserLogger());
 
         double total = 0;
-
         for (DetalleVenta detalle : listaDetalle) {
             total += detalle.getSubtotal();
         }
-
         v.setTotal(total);
-
         if (ventaDao.insert(v)) {
-
             boolean correcto = true;
-
             for (DetalleVenta detalle : listaDetalle) {
-
                 detalle.setVenta(v);
 
                 if (!detalleVentaDao.insert(detalle)) {
                     correcto = false;
                 }
             }
-
             if (correcto) {
+                ventaGuardada = v;
                 guardado = true;
-                cerrar();
+                Alert alert = alertUtils.viewAlerts(
+                        "Correcto",
+                        "Venta registrada correctamente",
+                        "INFORMATION"
+                );
+                alert.showAndWait();
             } else {
                 Alert alert = alertUtils.viewAlerts(
                         "Error",
@@ -210,7 +233,6 @@ public class VentaFormController {
                 );
                 alert.showAndWait();
             }
-
         } else {
             Alert alert = alertUtils.viewAlerts(
                     "Error",
@@ -220,17 +242,43 @@ public class VentaFormController {
             alert.showAndWait();
         }
     }
-
+    @FXML
+    private void handleImprimir() {
+        if (ventaGuardada == null) {
+            Alert alert = alertUtils.viewAlerts(
+                    "Aviso",
+                    "Primero debe guardar la venta",
+                    "WARNING"
+            );
+            alert.showAndWait();
+            return;
+        }
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource(
+                            "/pe/edu/upeu/taller_git_gp1/views/boleta-view.fxml"
+                    )
+            );
+            Parent root = loader.load();
+            BoletaController controller = loader.getController();
+            controller.recibirVenta(ventaGuardada, listaDetalle);
+            Stage stage = new Stage();
+            stage.setTitle("Boleta de venta");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
     private void cerrar() {
         ((Stage) cbCliente.getScene().getWindow()).close();
     }
-
     @FXML
     private void handleCancel() {
         cerrar();
     }
-
-    public boolean isGuardado() {
+    public boolean isSaved() {
         return guardado;
     }
 }
