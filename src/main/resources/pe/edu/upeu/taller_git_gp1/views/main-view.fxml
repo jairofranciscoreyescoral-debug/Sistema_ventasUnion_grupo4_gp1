@@ -1,14 +1,105 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<BorderPane xmlns="http://javafx.com/javafx/17.0.12"
+            xmlns:fx="http://javafx.com/fxml/1"
+            stylesheets="@style.css"
             fx:controller="pe.edu.upeu.taller_git_gp1.controller.MainController"
-            prefHeight="400.0" prefWidth="600.0">
+            prefHeight="600.0"
+            prefWidth="1000.0">
 
-</AnchorPane>
+    <!-- CABECERA -->
+    <top>
+        <HBox alignment="CENTER_LEFT"
+              prefHeight="70.0"
+              styleClass="header">
+
+            <children>
+
+                <ImageView fx:id="imgUnion" fitHeight="120.0" fitWidth="150.0"
+                           pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../img/union1.png"/>
+                    </image>
+                </ImageView>
+                <Region HBox.hgrow="ALWAYS" />
+                <Label text="Bienvenido Usuario" textFill="#f7f7f7">
+                    <font><Font name="Arial" size="23.0" /></font>
+                    <HBox.margin><Insets right="20.0"/></HBox.margin>
+                </Label>
+                <Region HBox.hgrow="ALWAYS"/>
+
+                <Label fx:id="lblUsuario"
+                       text="Bienvenido"
+                       textFill="WHITE">
+                    <font>
+                        <Font name="System Italic" size="14.0"/>
+                    </font>
+                    <HBox.margin>
+                        <Insets right="25.0"/>
+                    </HBox.margin>
+                </Label>
+
+            </children>
+        </HBox>
+    </top>
+    <left>
+        <VBox prefWidth="200.0"
+              styleClass="sidebar">
+
+            <children>
+
+                <Button maxWidth="Infinity"
+                        mnemonicParsing="false"
+                        onAction="#showHome"
+                        styleClass="nav-button"
+                        text="Inicio"/>
+
+                <Button maxWidth="Infinity"
+                        mnemonicParsing="false"
+                        onAction="#showCliente"
+                        styleClass="nav-button"
+                        text="Clientes"/>
+
+                <Button maxWidth="Infinity"
+                        mnemonicParsing="false"
+                        onAction="#showProducto"
+                        styleClass="nav-button"
+                        text="Productos"/>
+
+                <Button maxWidth="Infinity"
+                        mnemonicParsing="false"
+                        onAction="#showVenta"
+                        styleClass="nav-button"
+                        text="Ventas"/>
+
+                <Region VBox.vgrow="ALWAYS"/>
+
+                <Button maxWidth="Infinity" mnemonicParsing="false" onAction="#handleLogout"
+                        styleClass="nav-button" style="-fx-text-fill: #f66666;" text="Cerrar sesión"/>
+            </children>
+        </VBox>
+    </left>
+    <center>
+        <VBox>
+            <StackPane fx:id="contentArea" styleClass="content-area" VBox.vgrow="ALWAYS">
+                <children>
+                    <Label text="Seleccione una opción del menú"
+                           textFill="#999999"/>
+                </children>
+            </StackPane>
+            <HBox alignment="CENTER" prefHeight="30.0">
+                <children>
+                    <Label text="© Copyright Ventas Unión 2026"
+                           textFill="#999999"/>
+                </children>
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>

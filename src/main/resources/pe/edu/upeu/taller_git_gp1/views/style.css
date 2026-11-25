@@ -1,0 +1,215 @@
+.root {
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+    -fx-font-size: 14px;
+    -fx-background-color: #F4F6F9;
+}
+
+
+.header {
+    -fx-background-color: #E60000;
+    -fx-padding: 8 22 8 22;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.12), 10, 0, 0, 3);
+}
+
+
+.sidebar {
+    -fx-background-color: #24313A;
+    -fx-padding: 20 0 15 0;
+}
+
+.nav-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #DCE3E8;
+    -fx-alignment: center-left;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-padding: 16 25 16 25;
+    -fx-cursor: hand;
+    -fx-background-radius: 0;
+    -fx-border-width: 0 0 0 4;
+    -fx-border-color: transparent;
+    -fx-max-width: infinity;
+}
+
+.nav-button:hover {
+    -fx-background-color: #344650;
+    -fx-text-fill: white;
+    -fx-border-color: transparent transparent transparent #E60000;
+}
+
+
+
+.content-area {
+    -fx-background-color: #F4F6F9;
+}
+
+.right-pane {
+    -fx-background-color: #F4F6F9;
+    -fx-alignment: center-left;
+    -fx-padding: 25;
+}
+
+
+
+.lbl-titulo {
+    -fx-text-fill: #263746;
+    -fx-font-size: 23px;
+    -fx-font-weight: bold;
+}
+
+
+
+.button-login,
+.button-save {
+    -fx-background-color: #a52a2a;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-padding: 11 22 11 22;
+    -fx-cursor: hand;
+}
+
+.button-login:hover,
+.button-save:hover {
+    -fx-background-color: #24313a;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.15), 7, 0, 0, 2);
+}
+
+
+
+.button-action-edit {
+    -fx-background-color: #24313a;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 7;
+    -fx-padding: 9 18 9 18;
+    -fx-cursor: hand;
+}
+
+.button-action-edit:hover {
+    -fx-background-color: #1D6097;
+}
+
+
+
+.button-action-delete,
+.button-cancel {
+    -fx-background-color: #a52a2a;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 7;
+    -fx-padding: 9 18 9 18;
+    -fx-cursor: hand;
+}
+
+.button-action-delete:hover,
+.button-cancel:hover {
+    -fx-background-color: #B92F2F;
+}
+
+
+
+.table-view {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-border-color: #E1E7ED;
+    -fx-border-radius: 10;
+    -fx-padding: 2;
+    -fx-table-cell-border-color: #EDF0F3;
+    -fx-fixed-cell-size: 38px;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #EAF0F5;
+    -fx-background-radius: 9 9 0 0;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+    -fx-size: 42px;
+    -fx-border-color: transparent transparent #DCE3EA transparent;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: #34495E;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-alignment: center-left;
+    -fx-padding: 0 8 0 8;
+}
+
+.table-view .table-cell {
+    -fx-text-fill: #435365;
+    -fx-font-size: 13px;
+    -fx-alignment: center-left;
+    -fx-padding: 0 8 0 8;
+}
+
+.table-row-cell {
+    -fx-background-color: white;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: #F7F9FB;
+}
+
+.table-row-cell:hover {
+    -fx-background-color: #EAF4F3;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #D5EAE6;
+}
+
+.table-row-cell:selected .text {
+    -fx-fill: #263746;
+}
+
+
+.text-field,
+.password-field,
+.combo-box,
+.date-picker {
+    -fx-background-color: white;
+    -fx-border-color: #D6DEE6;
+    -fx-border-radius: 7;
+    -fx-background-radius: 7;
+    -fx-padding: 9;
+    -fx-font-size: 13px;
+}
+
+.text-field:focused,
+.password-field:focused,
+.combo-box:focused,
+.date-picker:focused {
+    -fx-border-color: #24313a;
+    -fx-border-width: 1.5;
+}
+
+
+
+.button-login {
+    -fx-cursor: hand;
+}
+
+
+.left-pane {
+    -fx-background-color: #24313A;
+    -fx-alignment: center;
+}
+
+.card {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-border-color: #E5EAF0;
+    -fx-border-radius: 12;
+    -fx-padding: 20;
+}
+
+
+
+.footer {
+    -fx-background-color: #F4F6F9;
+    -fx-padding: 8;
+}

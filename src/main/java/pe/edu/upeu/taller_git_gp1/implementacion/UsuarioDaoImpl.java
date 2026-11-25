@@ -1,6 +1,6 @@
 package pe.edu.upeu.taller_git_gp1.implementacion;
 
-import pe.edu.upeu.taller_git_gp1.interfaces.IUsuario;
+import pe.edu.upeu.taller_git_gp1.interfaces.IUsuarioDao;
 import pe.edu.upeu.taller_git_gp1.modelo.Usuario;
 import pe.edu.upeu.taller_git_gp1.utils.AlertsUtils;
 import pe.edu.upeu.taller_git_gp1.utils.ConexionBD;
@@ -10,7 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class UsuarioDaoImpl implements IUsuario {
+public class UsuarioDaoImpl implements IUsuarioDao {
     private static AlertsUtils alertsUtils = new AlertsUtils();
     @Override
     public Usuario login(String user, String password) {

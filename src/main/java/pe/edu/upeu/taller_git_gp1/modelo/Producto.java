@@ -95,8 +95,4 @@ public class Producto {
     public final IntegerProperty idproductoProperty() {
         return idproducto;
     }
-    @Override
-    public String toString() {
-        return this.getNombre() != null ? this.getNombre() + " - S/. " + this.getPrecio() : "";
-    }
 }

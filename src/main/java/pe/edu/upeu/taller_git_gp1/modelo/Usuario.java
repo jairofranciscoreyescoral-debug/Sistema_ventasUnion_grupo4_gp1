@@ -5,7 +5,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-public class Usuario {
+public class Usuario extends Persona{
     private final IntegerProperty idusuario = new SimpleIntegerProperty();
     private final StringProperty user = new SimpleStringProperty();
     private final StringProperty password = new SimpleStringProperty();

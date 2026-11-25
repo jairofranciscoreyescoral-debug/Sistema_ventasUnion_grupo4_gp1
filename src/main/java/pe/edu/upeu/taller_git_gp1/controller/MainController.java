@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
+import pe.edu.upeu.taller_git_gp1.modelo.UserSession;
 
 import java.io.IOException;
 
@@ -35,8 +36,12 @@ public class MainController {
         loadview("cliente-view.fxml");
     }
     @FXML
-    private void showHabitacion(){
-        loadview("habitaciones-view.fxml");
+    private void showProducto(){
+        loadview("producto-view.fxml");
+    }
+    @FXML
+    private void showVenta(){
+        loadview("venta-view.fxml");
     }
     private void loadview(String fxml) {
         try {

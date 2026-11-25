@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Font?>
+<VBox spacing="20.0"
+      prefWidth="560.0"
+      prefHeight="500.0"
+      style="-fx-background-color: white"
+      stylesheets="@style.css"
+      xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="pe.edu.upeu.taller_git_gp1.controller.ClienteFormController">
+
+    <padding>
+        <Insets bottom="25.0" left="40.0" right="40.0" top="30.0"/>
+    </padding>
+
+    <children>
+
+        <Label fx:id="lblTitulo"
+               text="Datos del cliente"
+               textFill="#263746"
+               styleClass="lbl-titulo">
+            <font>
+                <Font name="System Bold" size="23.0"/>
+            </font>
+        </Label>
+
+        <GridPane hgap="15.0" vgap="16.0">
+
+            <columnConstraints>
+                <ColumnConstraints minWidth="110.0" prefWidth="110.0"/>
+                <ColumnConstraints hgrow="ALWAYS" prefWidth="350.0"/>
+            </columnConstraints>
+
+            <rowConstraints>
+                <RowConstraints prefHeight="48.0"/>
+                <RowConstraints prefHeight="48.0"/>
+                <RowConstraints prefHeight="48.0"/>
+                <RowConstraints prefHeight="48.0"/>
+                <RowConstraints prefHeight="48.0"/>
+            </rowConstraints>
+
+            <children>
+
+                <Label text="Nombres:"/>
+                <TextField fx:id="txtNombre"
+                           prefHeight="43.0"
+                           maxWidth="Infinity"
+                           GridPane.columnIndex="1"/>
+
+                <Label text="Apellidos:" GridPane.rowIndex="1"/>
+                <TextField fx:id="txtApellido"
+                           prefHeight="43.0"
+                           maxWidth="Infinity"
+                           GridPane.columnIndex="1"
+                           GridPane.rowIndex="1"/>
+
+                <Label text="DNI:" GridPane.rowIndex="2"/>
+                <TextField fx:id="txtDni"
+                           prefHeight="43.0"
+                           maxWidth="Infinity"
+                           GridPane.columnIndex="1"
+                           GridPane.rowIndex="2"/>
+
+                <Label text="Email:" GridPane.rowIndex="3"/>
+                <TextField fx:id="txtEmail"
+                           prefHeight="43.0"
+                           maxWidth="Infinity"
+                           GridPane.columnIndex="1"
+                           GridPane.rowIndex="3"/>
+
+                <Label text="Género:" GridPane.rowIndex="4"/>
+                <ComboBox fx:id="cbGenero"
+                          prefHeight="43.0"
+                          maxWidth="Infinity"
+                          GridPane.columnIndex="1"
+                          GridPane.rowIndex="4"/>
+
+            </children>
+        </GridPane>
+
+        <Region VBox.vgrow="ALWAYS"/>
+
+        <HBox alignment="CENTER_RIGHT" spacing="15.0">
+            <children>
+
+                <Button mnemonicParsing="false"
+                        onAction="#handleCancel"
+                        prefHeight="45.0"
+                        prefWidth="120.0"
+                        styleClass="button-action-delete"
+                        text="Cancelar"/>
+
+                <Button mnemonicParsing="false"
+                        onAction="#handleSave"
+                        prefHeight="45.0"
+                        prefWidth="120.0"
+                        styleClass="button-action-edit"
+                        text="Guardar"/>
+
+            </children>
+        </HBox>
+
+    </children>
+</VBox>
