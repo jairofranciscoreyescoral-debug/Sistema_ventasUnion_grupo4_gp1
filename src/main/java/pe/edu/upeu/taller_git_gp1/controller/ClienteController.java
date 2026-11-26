@@ -22,39 +22,32 @@ public class ClienteController {
 
     @FXML
     private TableView<Cliente> tableCliente;
-
     @FXML
     private TableColumn<Cliente, Integer> ColID;
-
     @FXML
     private TableColumn<Cliente, Number> ColNumero;
-
     @FXML
     private TableColumn<Cliente, String> ColNombres;
-
     @FXML
     private TableColumn<Cliente, String> ColApellidos;
-
     @FXML
     private TableColumn<Cliente, String> ColDni;
-
     @FXML
     private TableColumn<Cliente, String> ColEmail;
-
     @FXML
     private TableColumn<Cliente, String> ColGenero;
+    @FXML
+    private TextField txtBuscar;
 
     private final IClienteDao clienteDao = new ClienteDaoImpl();
     private ObservableList<Cliente> listaCliente;
 
     @FXML
     public void initialize() {
-
         ColNumero.setCellFactory(column -> new TableCell<>() {
             @Override
             protected void updateItem(Number item, boolean empty) {
                 super.updateItem(item, empty);
-
                 if (empty) {
                     setText(null);
                 } else {
@@ -90,12 +83,23 @@ public class ClienteController {
     }
 
     @FXML
-    private void handleDelete() {
+    private void buscarCliente() {
+        String dni = txtBuscar.getText();
+        ObservableList<Cliente> clientesFiltrados =
+                FXCollections.observableArrayList();
+        for (Cliente cliente : listaCliente) {
+            if (cliente.getDni().equals(dni)) {
+                clientesFiltrados.add(cliente);
+            }
+        }
+        tableCliente.setItems(clientesFiltrados);
+    }
 
+    @FXML
+    private void handleDelete() {
         Cliente selectID = tableCliente.getSelectionModel().getSelectedItem();
 
         if (selectID != null) {
-
             Alert confirm = alertsUtils.viewAlerts(
                     "Confirmar eliminación",
                     "¿Estás seguro de eliminar Cliente? - " + selectID.getNombres(),
@@ -105,9 +109,9 @@ public class ClienteController {
             Optional<ButtonType> result = confirm.showAndWait();
 
             if (result.isPresent() && result.get() == ButtonType.OK) {
-
                 if (clienteDao.delete(selectID)) {
-                    listaCliente.remove(selectID);
+                    cargarDatos();
+                    buscarCliente();
                 } else {
                     Alert warning = alertsUtils.viewAlerts(
                             "Error",
@@ -139,7 +143,6 @@ public class ClienteController {
             alert.showAndWait();
         }
     }
-
     private void showForm(Cliente c) {
         try {
             FXMLLoader loader = new FXMLLoader(
@@ -150,6 +153,7 @@ public class ClienteController {
             Parent root = loader.load();
             ClienteFormController controller = loader.getController();
             controller.setCliente(c);
+
             Stage stage = new Stage();
             stage.setTitle(c == null ? "Nuevo Cliente" : "Editar Cliente");
             stage.initModality(Modality.APPLICATION_MODAL);
@@ -193,6 +197,7 @@ public class ClienteController {
                     }
                 }
                 cargarDatos();
+                buscarCliente();
             }
         } catch (Exception e) {
             e.printStackTrace();

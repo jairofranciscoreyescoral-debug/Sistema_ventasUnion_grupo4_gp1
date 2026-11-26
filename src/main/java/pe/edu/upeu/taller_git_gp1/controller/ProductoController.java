@@ -20,6 +20,7 @@ import java.util.Optional;
 
 public class ProductoController {
     private static final AlertsUtils alertsUtils = new AlertsUtils();
+
     @FXML
     private TableView<Producto> tableProducto;
     @FXML
@@ -36,17 +37,17 @@ public class ProductoController {
     private TableColumn<Producto, Integer> ColStock;
     @FXML
     private TableColumn<Producto, String> ColEstado;
+    @FXML
+    private TextField txtBuscar;
 
     private final IProductoDao productoDao = new ProductoDaoImpl();
     private ObservableList<Producto> listaProductos;
 
     @FXML
     public void initialize() {
-
         ColNumber.setCellFactory(column -> new TableCell<>() {
             protected void updateItem(Number item, boolean empty) {
                 super.updateItem(item, empty);
-
                 if (empty) {
                     setText(null);
                 } else {
@@ -54,6 +55,7 @@ public class ProductoController {
                 }
             }
         });
+
         ColID.setCellValueFactory(
                 data -> data.getValue().idproductoProperty().asObject());
 
@@ -79,8 +81,22 @@ public class ProductoController {
         listaProductos = FXCollections.observableArrayList(
                 productoDao.listAll()
         );
-
         tableProducto.setItems(listaProductos);
+    }
+
+    @FXML
+    private void buscarProducto() {
+        String buscar = txtBuscar.getText().toLowerCase();
+
+        ObservableList<Producto> productosFiltrados =
+                FXCollections.observableArrayList();
+
+        for (Producto producto : listaProductos) {
+            if (producto.getNombre().toLowerCase().contains(buscar)) {
+                productosFiltrados.add(producto);
+            }
+        }
+        tableProducto.setItems(productosFiltrados);
     }
 
     @FXML
@@ -92,6 +108,7 @@ public class ProductoController {
     private void handleEdit() {
         Producto selectProducto =
                 tableProducto.getSelectionModel().getSelectedItem();
+
         if (selectProducto != null) {
             Producto productoFull =
                     productoDao.searchById(selectProducto.getIdproducto());
@@ -110,6 +127,7 @@ public class ProductoController {
     private void handleDelete() {
         Producto selectProducto =
                 tableProducto.getSelectionModel().getSelectedItem();
+
         if (selectProducto != null) {
             Alert confirm = alertsUtils.viewAlerts(
                     "Confirmar eliminación",
@@ -120,7 +138,8 @@ public class ProductoController {
             Optional<ButtonType> result = confirm.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
                 if (productoDao.delete(selectProducto)) {
-                    listaProductos.remove(selectProducto);
+                    cargarDatos();
+                    buscarProducto();
                 } else {
                     Alert confirmWarning = alertsUtils.viewAlerts(
                             "Error",
@@ -136,10 +155,9 @@ public class ProductoController {
                     "Seleccione un producto para eliminar",
                     "WARNING"
             );
-            alert.showAndWait();
+            alert.show();
         }
     }
-
     private void showForm(Producto p) {
         try {
             FXMLLoader loader = new FXMLLoader(
@@ -150,6 +168,7 @@ public class ProductoController {
             Parent root = loader.load();
             ProductoFormController controller = loader.getController();
             controller.setProducto(p);
+
             Stage stage = new Stage();
             stage.setTitle(p == null ? "Nuevo Producto" : "Editar Producto");
             stage.initModality(Modality.APPLICATION_MODAL);
@@ -176,6 +195,7 @@ public class ProductoController {
                     }
                 } else {
                     boolean result = productoDao.update(productoProcesado);
+
                     if (result) {
                         Alert alert = alertsUtils.viewAlerts(
                                 "Update",
@@ -193,6 +213,7 @@ public class ProductoController {
                     }
                 }
                 cargarDatos();
+                buscarProducto();
             }
         } catch (Exception e) {
             e.printStackTrace();

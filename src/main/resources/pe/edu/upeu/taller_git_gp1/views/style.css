@@ -6,7 +6,7 @@
 
 
 .header {
-    -fx-background-color: #820003;
+    -fx-background-color: #840003;
     -fx-padding: 8 22 8 22;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.12), 10, 0, 0, 3);
 }
@@ -34,7 +34,7 @@
 .nav-button:hover {
     -fx-background-color: #344650;
     -fx-text-fill: white;
-    -fx-border-color: transparent transparent transparent #820003;
+    -fx-border-color: transparent transparent transparent #840003;
 }
 
 
