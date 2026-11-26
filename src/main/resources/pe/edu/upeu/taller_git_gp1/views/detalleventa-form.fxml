@@ -38,7 +38,7 @@
             <TableView fx:id="tableProducto" VBox.vgrow="ALWAYS">
                 <columns>
                     <TableColumn fx:id="ColNumero" text="N°" prefWidth="40.0"/>
-                    <TableColumn fx:id="ColId" text="ID" prefWidth="45.0"/>
+                    <TableColumn fx:id="ColId" visible="false" text="ID" prefWidth="45.0"/>
                     <TableColumn fx:id="ColNombre" text="Producto" prefWidth="180.0"/>
                     <TableColumn fx:id="ColPrecio" text="Precio" prefWidth="75.0"/>
                     <TableColumn fx:id="ColStock" text="Stock" prefWidth="65.0"/>

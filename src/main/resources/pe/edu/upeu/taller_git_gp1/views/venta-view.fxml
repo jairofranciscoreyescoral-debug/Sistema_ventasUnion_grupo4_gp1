@@ -39,7 +39,7 @@
         </columnResizePolicy>
     </TableView>
     <HBox alignment="CENTER_RIGHT" spacing="10.0">
-        <Button text="VER VENTA"
+        <Button text="VER BOLETA"
                 onAction="#handleVerVenta"
                 styleClass="button-action-edit"/>
     </HBox>

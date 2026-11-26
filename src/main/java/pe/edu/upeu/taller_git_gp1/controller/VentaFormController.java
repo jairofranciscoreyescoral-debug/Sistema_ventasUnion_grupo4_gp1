@@ -24,6 +24,7 @@ import pe.edu.upeu.taller_git_gp1.utils.AlertsUtils;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.List;
 
 public class VentaFormController {
     private static final AlertsUtils alertUtils = new AlertsUtils();
@@ -221,8 +222,9 @@ public class VentaFormController {
                         "Correcto",
                         "Venta registrada correctamente",
                         "INFORMATION"
+
                 );
-                alert.showAndWait();
+                cerrar();
             } else {
                 Alert alert = alertUtils.viewAlerts(
                         "Error",
@@ -240,6 +242,7 @@ public class VentaFormController {
             alert.showAndWait();
         }
     }
+    /*
     @FXML
     private void handleImprimir() {
         if (ventaGuardada == null) {
@@ -267,7 +270,7 @@ public class VentaFormController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
+    }*/
     @FXML
     private void cerrar() {
         ((Stage) cbCliente.getScene().getWindow()).close();

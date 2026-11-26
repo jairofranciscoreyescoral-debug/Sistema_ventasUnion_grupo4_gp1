@@ -71,7 +71,7 @@
     <!-- Botones -->
     <HBox alignment="CENTER_RIGHT" spacing="12.0">
         <Button text="Cancelar" onAction="#handleCancel" styleClass="button-cancel"/>
-        <Button text="Imprimir boleta" onAction="#handleImprimir" styleClass="button-action-edit"/>
+        <!--<Button text="Imprimir boleta" onAction="#handleImprimir" styleClass="button-action-edit"/>-->
         <Button text="Guardar venta" onAction="#handleSave" styleClass="button-save"/>
     </HBox>
 </VBox>
