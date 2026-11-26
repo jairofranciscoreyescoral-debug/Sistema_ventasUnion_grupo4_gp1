@@ -14,7 +14,7 @@
             prefHeight="600.0"
             prefWidth="1000.0">
 
-    <!-- CABECERA -->
+    <!-- cabezera-->
     <top>
         <HBox alignment="CENTER_LEFT"
               prefHeight="70.0"

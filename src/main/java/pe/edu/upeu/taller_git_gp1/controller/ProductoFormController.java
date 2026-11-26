@@ -30,7 +30,7 @@ public class ProductoFormController {
     @FXML
     public void initialize() {
         cbEstado.getItems().addAll("Disponible", "No Stock");
-        cbTipo.getItems().addAll("Pan", "Bebida", "Bolleria", "Snack", "Cereal", "Untable", "Paneton");
+        cbTipo.getItems().addAll("Pan", "Bebida","Galleta", "Bolleria", "Snack", "Cereal", "Untable", "Paneton");
         cbEstado.setDisable(true);
     }
     private boolean validated() {

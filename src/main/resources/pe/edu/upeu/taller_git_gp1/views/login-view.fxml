@@ -8,6 +8,8 @@
 
 <?import javafx.scene.text.Font?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="pe.edu.upeu.taller_git_gp1.controller.UsuarioController"
@@ -19,11 +21,14 @@
 
                 <VBox prefWidth="250.0" styleClass="left-pane" HBox.hgrow="ALWAYS">
                     <children>
-                        <Label text="Unión" textFill="WHITE">
-                            <font> <Font name="System Bold" size="48.0"/></font>
-                        </Label>
-                        <Label text="Sistema de Ventas" textFill="WHITE">
-                            <font> <Font size="14.0"/></font>
+                        <ImageView fx:id="imgUnion" fitHeight="150.0" fitWidth="150.0"
+                                   pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../img/blanco.png"/>
+                            </image>
+                        </ImageView>
+                        <Label text="SISTEMA DE VENTAS"  textFill="WHITE">
+                            <Font name="Arial Black" size="20.0"/>
                         </Label>
                     </children>
                 </VBox>

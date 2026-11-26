@@ -1,40 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
-<?import javafx.scene.text.Font?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
+<?import javafx.geometry.Insets?>
+
 <StackPane fx:id="mainContainer"
            style="-fx-background-color: #F7F7F7;"
            xmlns="http://javafx.com/javafx"
            xmlns:fx="http://javafx.com/fxml">
     <children>
-        <VBox alignment="CENTER" spacing="25.0">
-            <children>
-                <Label text="BIENVENIDO AL SISTEMA DE VENTAS UNIÓN"
-                       textFill="#263746">
-                    <font>
-                        <Font name="System Bold" size="28.0"/>
-                    </font>
-                </Label>
-                <ImageView fx:id="imgHotel" fitHeight="390.0" fitWidth="780.0"
-                           pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@../img/fabrica.jpg"/>
-                    </image>
-                </ImageView>
-                <Label text="Seleccione una opción del menú"
-                       textFill="#666666">
-                    <font>
-                        <Font size="18.0"/>
-                    </font>
-                </Label>
-            </children>
-        </VBox>
+        <ImageView fx:id="imgHotel"
+                   fitHeight="730.0"
+                   fitWidth="1350.0"
+                   preserveRatio="false">
+            <image>
+                <Image url="@../img/fabrica.png"/>
+            </image>
+        </ImageView>
+        <Label text="© Copyright Ventas Unión 2026"
+               textFill="WHITE"
+               StackPane.alignment="BOTTOM_CENTER">
+            <StackPane.margin>
+                <Insets bottom="8.0"/>
+            </StackPane.margin>
+        </Label>
     </children>
 </StackPane>

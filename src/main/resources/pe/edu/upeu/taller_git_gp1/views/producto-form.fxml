@@ -35,8 +35,8 @@
         <Label text="Stock:" GridPane.rowIndex="3"/>
         <TextField fx:id="txtStock" promptText="Ingrese stock"
                    GridPane.columnIndex="1" GridPane.rowIndex="3"/>
-        <Label text="Estado:" GridPane.rowIndex="4"/>
-        <ComboBox fx:id="cbEstado" maxWidth="Infinity"
+        <Label visible="false" text="Estado:" GridPane.rowIndex="4"/>
+        <ComboBox fx:id="cbEstado" visible="false" maxWidth="Infinity"
                   promptText="Seleccione estado"
                   GridPane.columnIndex="1" GridPane.rowIndex="4"/>
     </GridPane>
