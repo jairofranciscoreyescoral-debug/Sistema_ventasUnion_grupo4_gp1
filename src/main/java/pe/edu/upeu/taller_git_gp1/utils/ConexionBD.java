@@ -105,7 +105,7 @@ public class ConexionBD {
             // Insertar administrador si todavía no existe
             String sqlAdmin = "INSERT OR IGNORE INTO usuario " +
                     "(user, password, tipoUser, nombres, apellidos) " +
-                    "VALUES ('admin', 'admin123', 'ADMIN', 'Francisco', 'Sistema');";
+                    "VALUES ('admin', 'admin123', 'ADMIN', 'Francisco', 'Reyes');";
 
             stmt.executeUpdate(sqlAdmin);
 

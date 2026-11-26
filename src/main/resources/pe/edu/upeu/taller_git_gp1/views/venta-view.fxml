@@ -28,7 +28,7 @@
     <TableView fx:id="tableVenta" VBox.vgrow="ALWAYS">
         <columns>
             <TableColumn fx:id="ColNumero" prefWidth="50.0" text="N°"/>
-            <TableColumn fx:id="ColID" prefWidth="60.0" text="ID"/>
+            <TableColumn fx:id="ColID" visible="false" prefWidth="60.0" text="ID"/>
             <TableColumn fx:id="ColCliente" prefWidth="200.0" text="Cliente"/>
             <TableColumn fx:id="ColUsuario" prefWidth="130.0" text="Usuario"/>
             <TableColumn fx:id="ColFecha" prefWidth="120.0" text="Fecha"/>
