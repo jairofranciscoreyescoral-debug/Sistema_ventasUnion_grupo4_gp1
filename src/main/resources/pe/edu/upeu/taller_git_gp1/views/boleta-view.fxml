@@ -3,6 +3,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 <VBox alignment="TOP_CENTER"
       prefWidth="520.0"
       prefHeight="680.0"
@@ -15,10 +17,12 @@
     <!-- encabezado -->
     <VBox alignment="CENTER" spacing="5.0"
           style="-fx-padding: 8 0 15 0;">
-        <Label text="UNIÓN"
-               style="-fx-font-size: 30px; -fx-font-weight: bold; -fx-text-fill: #24313A;"/>
-        <Label text="Alimentos y consumo"
-               style="-fx-font-size: 12px; -fx-text-fill: #777777;"/>
+        <ImageView fx:id="imgUnion" fitHeight="100.0"
+                   fitWidth="180.0" preserveRatio="true">
+            <image>
+                <Image url="@../img/negro.png"/>
+            </image>
+        </ImageView>
         <Label text="BOLETA DE VENTA"
                style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #24313A;"/>
         <Label fx:id="lblNumero" text="000001"
@@ -34,6 +38,11 @@
         <HBox spacing="8.0">
             <Label text="CLIENTE:"/>
             <Label fx:id="lblCliente" wrapText="true"/>
+        </HBox>
+
+        <HBox spacing="8.0">
+            <Label text="DNI:"/>
+            <Label fx:id="lblDni"/>
         </HBox>
 
         <HBox spacing="8.0">
@@ -77,7 +86,10 @@
           style="-fx-padding: 15 0 10 0;">
         <Label text="¡Gracias por su compra!"
                style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
-        <Label text="Vuelva pronto"
+        <Label text="Si, pues, coméis o bebéis, o hacéis otra cosa, hacedlo todo para la gloria de Dios"
                style="-fx-font-size: 12px; -fx-text-fill: #777777;"/>
+        <Label text="1 Corintios 10:31"
+               style="-fx-font-size: 12px; -fx-text-fill: #777777;"/>
+
     </VBox>
 </VBox>

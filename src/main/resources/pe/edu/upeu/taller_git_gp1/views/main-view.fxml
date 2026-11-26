@@ -21,10 +21,10 @@
               styleClass="header">
 
             <children>
-                <ImageView fx:id="imgUnion" fitHeight="120.0" fitWidth="150.0"
+                <ImageView fx:id="imgUnion" fitHeight="120.0" fitWidth="160.0"
                            pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../img/union1.png"/>
+                        <Image url="@../img/blanco.png"/>
                     </image>
                 </ImageView>
                 <Region HBox.hgrow="ALWAYS"/>

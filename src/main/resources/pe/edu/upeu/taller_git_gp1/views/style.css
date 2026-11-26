@@ -6,7 +6,7 @@
 
 
 .header {
-    -fx-background-color: #E60000;
+    -fx-background-color: #820003;
     -fx-padding: 8 22 8 22;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.12), 10, 0, 0, 3);
 }
@@ -34,7 +34,7 @@
 .nav-button:hover {
     -fx-background-color: #344650;
     -fx-text-fill: white;
-    -fx-border-color: transparent transparent transparent #E60000;
+    -fx-border-color: transparent transparent transparent #820003;
 }
 
 
@@ -108,8 +108,6 @@
     -fx-background-color: #B92F2F;
 }
 
-
-
 .table-view {
     -fx-background-color: white;
     -fx-background-radius: 10;
@@ -166,7 +164,6 @@
     -fx-fill: #263746;
 }
 
-
 .text-field,
 .password-field,
 .combo-box,
@@ -187,12 +184,9 @@
     -fx-border-width: 1.5;
 }
 
-
-
 .button-login {
     -fx-cursor: hand;
 }
-
 
 .left-pane {
     -fx-background-color: #e60000;
@@ -270,4 +264,12 @@
 .boleta-tabla .clipped-container,
 .boleta-tabla .sheet {
     -fx-background-color: transparent;
+}
+
+/* para mi login bonito */
+.login-left-pane {
+    -fx-background-image: url("../img/banner.png");
+    -fx-background-size: cover;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
 }

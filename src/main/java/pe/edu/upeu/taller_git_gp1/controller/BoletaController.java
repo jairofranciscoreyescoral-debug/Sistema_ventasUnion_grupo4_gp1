@@ -13,31 +13,24 @@ import pe.edu.upeu.taller_git_gp1.modelo.DetalleVenta;
 public class BoletaController {
     @FXML
     private Label lblNumero;
-
     @FXML
     private Label lblFecha;
-
     @FXML
     private Label lblCliente;
-
+    @FXML
+    private Label lblDNI;
     @FXML
     private Label lblUsuario;
-
     @FXML
     private Label lblTotal;
-
     @FXML
     private TableView<DetalleVenta> tableBoleta;
-
     @FXML
     private TableColumn<DetalleVenta, String> ColProducto;
-
     @FXML
     private TableColumn<DetalleVenta, Integer> ColCantidad;
-
     @FXML
     private TableColumn<DetalleVenta, Double> ColPrecio;
-
     @FXML
     private TableColumn<DetalleVenta, Double> ColSubtotal;
 
@@ -70,6 +63,7 @@ public class BoletaController {
                 venta.getCliente().getNombres() + " " +
                         venta.getCliente().getApellidos()
         );
+        lblDNI.setText(venta.getCliente().getDni());
         lblUsuario.setText(
                 venta.getUsuario().getNombres() + " " +
                         venta.getUsuario().getApellidos()
