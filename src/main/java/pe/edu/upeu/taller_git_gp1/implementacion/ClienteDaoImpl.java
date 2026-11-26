@@ -74,10 +74,8 @@ public class ClienteDaoImpl implements IClienteDao {
     @Override
     public boolean delete(Cliente c) {
         String query = "DELETE FROM cliente WHERE idcliente=?";
-
         try (Connection cn = ConexionBD.getConnection();
              PreparedStatement st = cn.prepareStatement(query)) {
-
             st.setInt(1, c.getIdcliente());
             st.executeUpdate();
             return true;
@@ -85,7 +83,6 @@ public class ClienteDaoImpl implements IClienteDao {
         } catch (Exception e) {
             System.out.println("Error al eliminar cliente: " + e.getMessage());
         }
-
         return false;
     }
 

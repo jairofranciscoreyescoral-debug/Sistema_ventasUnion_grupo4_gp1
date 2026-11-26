@@ -42,7 +42,7 @@
 
         <HBox spacing="8.0">
             <Label text="DNI:"/>
-            <Label fx:id="lblDni"/>
+            <Label fx:id="lblDNI"/>
         </HBox>
 
         <HBox spacing="8.0">
