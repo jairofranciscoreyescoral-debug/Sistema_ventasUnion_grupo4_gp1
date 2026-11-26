@@ -163,9 +163,7 @@ public class VentaFormController {
         actualizarTotal();
     }
     private void actualizarTotal() {
-
         double total = 0;
-
         for (DetalleVenta detalle : listaDetalle) {
             total += detalle.getSubtotal();
         }

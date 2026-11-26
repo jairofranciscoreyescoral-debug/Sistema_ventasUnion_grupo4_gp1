@@ -19,7 +19,6 @@ import java.util.Optional;
 
 public class ClienteController {
     private static AlertsUtils alertsUtils = new AlertsUtils();
-
     @FXML
     private TableView<Cliente> tableCliente;
     @FXML
@@ -38,10 +37,8 @@ public class ClienteController {
     private TableColumn<Cliente, String> ColGenero;
     @FXML
     private TextField txtBuscar;
-
     private final IClienteDao clienteDao = new ClienteDaoImpl();
     private ObservableList<Cliente> listaCliente;
-
     @FXML
     public void initialize() {
         ColNumero.setCellFactory(column -> new TableCell<>() {
@@ -96,41 +93,13 @@ public class ClienteController {
     }
 
     @FXML
-    private void handleDelete() {
-        Cliente selectID = tableCliente.getSelectionModel().getSelectedItem();
-
-        if (selectID != null) {
-            Alert confirm = alertsUtils.viewAlerts(
-                    "Confirmar eliminación",
-                    "¿Estás seguro de eliminar Cliente? - " + selectID.getNombres(),
-                    "CONFIRMATION"
-            );
-
-            Optional<ButtonType> result = confirm.showAndWait();
-
-            if (result.isPresent() && result.get() == ButtonType.OK) {
-                if (clienteDao.delete(selectID)) {
-                    cargarDatos();
-                    buscarCliente();
-                } else {
-                    Alert warning = alertsUtils.viewAlerts(
-                            "Error",
-                            "No se pudo eliminar el cliente.",
-                            "WARNING"
-                    );
-                    warning.showAndWait();
-                }
-            }
-        }
-    }
-
-    @FXML
     private void handleNew() {
         showForm(null);
     }
     @FXML
     private void handleEdit() {
         Cliente selectClient = tableCliente.getSelectionModel().getSelectedItem();
+
         if (selectClient != null) {
             Cliente clientFull = clienteDao.searchById(selectClient.getIdcliente());
             showForm(clientFull);
@@ -143,6 +112,34 @@ public class ClienteController {
             alert.showAndWait();
         }
     }
+
+    @FXML
+    private void handleDelete() {
+        Cliente selectID = tableCliente.getSelectionModel().getSelectedItem();
+
+        if (selectID != null) {
+            Alert confirm = alertsUtils.viewAlerts(
+                    "Confirmar eliminación",
+                    "¿Estás seguro de eliminar Cliente? - " + selectID.getNombres(),
+                    "CONFIRMATION"
+            );
+            Optional<ButtonType> result = confirm.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                if (clienteDao.delete(selectID)) {
+                    listaCliente.remove(selectID);
+                    tableCliente.setItems(listaCliente);
+                } else {
+                    Alert confirmWarning = alertsUtils.viewAlerts(
+                            "Error",
+                            "No se pudo eliminar el cliente.",
+                            "WARNING"
+                    );
+                    confirmWarning.showAndWait();
+                }
+            }
+        }
+    }
+
     private void showForm(Cliente c) {
         try {
             FXMLLoader loader = new FXMLLoader(
@@ -196,8 +193,8 @@ public class ClienteController {
                         alert.showAndWait();
                     }
                 }
+                txtBuscar.clear();
                 cargarDatos();
-                buscarCliente();
             }
         } catch (Exception e) {
             e.printStackTrace();
